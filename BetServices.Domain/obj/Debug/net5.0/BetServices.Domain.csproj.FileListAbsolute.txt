@@ -1,0 +1,12 @@
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\bin\Debug\net5.0\BetServices.Domain.deps.json
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\bin\Debug\net5.0\BetServices.Domain.dll
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\bin\Debug\net5.0\ref\BetServices.Domain.dll
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\bin\Debug\net5.0\BetServices.Domain.pdb
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\obj\Debug\net5.0\BetServices.Domain.csproj.AssemblyReference.cache
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\obj\Debug\net5.0\BetServices.Domain.GeneratedMSBuildEditorConfig.editorconfig
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\obj\Debug\net5.0\BetServices.Domain.AssemblyInfoInputs.cache
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\obj\Debug\net5.0\BetServices.Domain.AssemblyInfo.cs
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\obj\Debug\net5.0\BetServices.Domain.csproj.CoreCompileInputs.cache
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\obj\Debug\net5.0\BetServices.Domain.dll
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\obj\Debug\net5.0\ref\BetServices.Domain.dll
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Domain\obj\Debug\net5.0\BetServices.Domain.pdb

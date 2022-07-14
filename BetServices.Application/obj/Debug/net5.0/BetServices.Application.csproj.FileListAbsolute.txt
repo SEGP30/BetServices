@@ -1,0 +1,15 @@
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\bin\Debug\net5.0\BetServices.Application.deps.json
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\bin\Debug\net5.0\BetServices.Application.dll
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\bin\Debug\net5.0\ref\BetServices.Application.dll
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\bin\Debug\net5.0\BetServices.Application.pdb
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\bin\Debug\net5.0\BetServices.Domain.dll
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\bin\Debug\net5.0\BetServices.Domain.pdb
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\obj\Debug\net5.0\BetServices.Application.csproj.AssemblyReference.cache
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\obj\Debug\net5.0\BetServices.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\obj\Debug\net5.0\BetServices.Application.AssemblyInfoInputs.cache
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\obj\Debug\net5.0\BetServices.Application.AssemblyInfo.cs
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\obj\Debug\net5.0\BetServices.Application.csproj.CoreCompileInputs.cache
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\obj\Debug\net5.0\BetServices.Application.csproj.CopyComplete
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\obj\Debug\net5.0\BetServices.Application.dll
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\obj\Debug\net5.0\ref\BetServices.Application.dll
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\BetServices.Application\obj\Debug\net5.0\BetServices.Application.pdb

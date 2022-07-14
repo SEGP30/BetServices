@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "BetServices.Application/1.0.0": {
+        "dependencies": {
+          "BetServices.Domain": "1.0.0"
+        },
+        "runtime": {
+          "BetServices.Application.dll": {}
+        }
+      },
+      "BetServices.Domain/1.0.0": {
+        "runtime": {
+          "BetServices.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "BetServices.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "BetServices.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

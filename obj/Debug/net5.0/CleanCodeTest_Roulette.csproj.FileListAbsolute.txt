@@ -1,0 +1,5 @@
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\obj\Debug\net5.0\CleanCodeTest_Roulette.csproj.AssemblyReference.cache
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\obj\Debug\net5.0\CleanCodeTest_Roulette.GeneratedMSBuildEditorConfig.editorconfig
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\obj\Debug\net5.0\CleanCodeTest_Roulette.AssemblyInfoInputs.cache
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\obj\Debug\net5.0\CleanCodeTest_Roulette.AssemblyInfo.cs
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\obj\Debug\net5.0\CleanCodeTest_Roulette.csproj.CoreCompileInputs.cache
