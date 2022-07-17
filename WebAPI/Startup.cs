@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BetServices.Application.BetServices;
 using BetServices.Domain.Contracts;
 using BetServices.Infrastructure;
 using BetServices.Infrastructure.Base;
@@ -39,6 +40,8 @@ namespace WebAPI
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" }); });
+            services.AddSingleton<PlaceBetService>();
+            services.AddSingleton<ClosingBetsService>();
             
             // var multiplexer = ConnectionMultiplexer.Connect("localhost:6379");
             // services.AddSingleton<IConnectionMultiplexer>(multiplexer);

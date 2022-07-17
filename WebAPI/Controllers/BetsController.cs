@@ -7,31 +7,31 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [ApiController]
+    [Route("[controller]")]
     
     public class BetsController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly PlaceBetService _placeBetService;
+        private readonly ClosingBetsService _closingBetsService;
 
-        public BetsController(IUnitOfWork unitOfWork)
+        public BetsController(PlaceBetService placeBetService, ClosingBetsService closingBetsService)
         {
-            _unitOfWork = unitOfWork;
+            _placeBetService = placeBetService;
+            _closingBetsService = closingBetsService;
         }
 
         [HttpPost]
-        [Route("/bets")]
         public async Task<IActionResult> PlaceBet(PlaceBetRequest request)
         {
-            var service = new PlaceBetService(_unitOfWork);
-            var response = await service.Execute(request);
+            var response = await _placeBetService.Execute(request);
             return Ok(response);
         }
 
         [HttpGet]
-        [Route("/bets/close")]
+        [Route("close")]
         public async Task<IActionResult> ClosingBets(long rouletteId)
         {
-            var service = new ClosingBetsService(_unitOfWork);
-            var response = await service.Execute(rouletteId);
+            var response = await _closingBetsService.Execute(rouletteId);
             return Ok(response);
         }
     }

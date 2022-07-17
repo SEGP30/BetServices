@@ -14,18 +14,21 @@ namespace BetServices.Application.BetServices
     public class ClosingBetsService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly RouletteClosingService _rouletteClosingService;
+        private readonly ObtainRewardService _obtainRewardService;
 
 
-        public ClosingBetsService(IUnitOfWork unitOfWork)
+        public ClosingBetsService(IUnitOfWork unitOfWork, RouletteClosingService rouletteClosingService, ObtainRewardService obtainRewardService)
         {
             _unitOfWork = unitOfWork;
-
+            _rouletteClosingService = rouletteClosingService;
+            _obtainRewardService = obtainRewardService;
         }
 
         public async Task<ClosingBetsResponse> Execute(long rouletteId)
         {
             var winnerNumber = new Random().Next(37);
-            var closedRoulette = await new RouletteClosingService(_unitOfWork).Execute(rouletteId);
+            var closedRoulette = await  _rouletteClosingService.Execute(rouletteId);
             if (!closedRoulette.Response)
                 return new ClosingBetsResponse
                 {
@@ -33,18 +36,17 @@ namespace BetServices.Application.BetServices
                 };
 
             var betsToClose = await _unitOfWork.BetRepository.FindBy(b => b.RouletteId == rouletteId);
-            betsToClose.ForEach(b => b.EntityState = EntityState.Inactive);
-            betsToClose.ForEach(b => b.Reward = b.Type != BetType.Color && b.SelectedNumber == winnerNumber ? 
-                b.Amount * 5 : 0);
-            betsToClose.ForEach(b => b.Reward = (long)(b.Type != BetType.Numerical && b.SelectedColor == SelectedColor.Red 
-                && winnerNumber % 2 == 0 ? b.Amount * 1.8 : 0));
-            betsToClose.ForEach(b => b.Reward = (long)(b.Type != BetType.Numerical && b.SelectedColor == SelectedColor.Black 
-                && winnerNumber % 2 == 1 ? b.Amount * 1.8 : 0));
- 
+
+            foreach (var bet in betsToClose)
+            {
+                bet.EntityState = EntityState.Inactive; 
+                bet.CalculateReward(winnerNumber);
+            }
+            
             _unitOfWork.BetRepository.UpdateRange(betsToClose);
             await _unitOfWork.Commit();
             
-            betsToClose.ForEach(async b =>  await new ObtainRewardService(_unitOfWork).Execute(b));
+            betsToClose.ForEach(async b =>  await _obtainRewardService.Execute(b));
 
             return new ClosingBetsResponse
             {
