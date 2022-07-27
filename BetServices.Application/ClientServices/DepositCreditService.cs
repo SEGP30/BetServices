@@ -8,16 +8,16 @@ namespace BetServices.Application.ClientServices
 {
     public class DepositCreditService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IClientRepository _clientRepository;
 
-        public DepositCreditService(IUnitOfWork unitOfWork)
+        public DepositCreditService(IClientRepository clientRepository)
         {
-            _unitOfWork = unitOfWork;
+            _clientRepository = clientRepository;
         }
 
         public async Task<DepositCreditResponse> Execute(DepositCreditRequest request)
         {
-            var clientToDeposit = await _unitOfWork.ClientRepository.Find(request.ClientId);
+            var clientToDeposit = await _clientRepository.Find(request.ClientId);
             if (clientToDeposit == null)
                 return new DepositCreditResponse
                 {
@@ -30,10 +30,10 @@ namespace BetServices.Application.ClientServices
                     Message = "Cannot deposit negative or 0 credit"
                 };
 
-            clientToDeposit.Credit = request.NewCredit;
+            clientToDeposit.Credit += request.NewCredit;
             clientToDeposit.UpdateTime = DateTime.Now;
-            _unitOfWork.ClientRepository.Update(clientToDeposit);
-            await _unitOfWork.Commit();
+            await _clientRepository.Update(clientToDeposit);
+            //await _unitOfWork.Commit();
             
             return new DepositCreditResponse
             {

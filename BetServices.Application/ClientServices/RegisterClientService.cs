@@ -10,16 +10,16 @@ namespace BetServices.Application.ClientServices
 {
     public class RegisterClientService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IClientRepository _clientRepository;
 
-        public RegisterClientService(IUnitOfWork unitOfWork)
+        public RegisterClientService(IClientRepository clientRepository)
         {
-            _unitOfWork = unitOfWork;
+            _clientRepository = clientRepository;
         }
 
         public async Task<RegisterClientResponse> Execute(RegisterClientRequest request)
         {
-            var clientInDb = await _unitOfWork.ClientRepository.Find(request.ClientId);
+            var clientInDb = await _clientRepository.Find(request.ClientId);
             if (clientInDb != null)
                 return new RegisterClientResponse
                 {
@@ -38,8 +38,8 @@ namespace BetServices.Application.ClientServices
                 UpdateTime = DateTime.Now
             };
             
-            await _unitOfWork.ClientRepository.Insert(clientToRegister);
-            await _unitOfWork.Commit();
+            await _clientRepository.Insert(clientToRegister);
+            //await _unitOfWork.Commit();
 
             return new RegisterClientResponse
             {

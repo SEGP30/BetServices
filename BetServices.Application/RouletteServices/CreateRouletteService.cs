@@ -10,16 +10,16 @@ namespace BetServices.Application.RouletteServices
 {
     public class CreateRouletteService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRouletteRepository _rouletteRepository;
 
-        public CreateRouletteService(IUnitOfWork unitOfWork)
+        public CreateRouletteService(IRouletteRepository rouletteRepository)
         {
-            _unitOfWork = unitOfWork;
+            _rouletteRepository = rouletteRepository;
         }
 
         public async Task<CreateRouletteResponse> Execute(CreateRouletteRequest request)
         {
-            var rouletteInDb = await _unitOfWork.RouletteRepository.Find(request.RouletteId);
+            var rouletteInDb = await _rouletteRepository.Find(request.RouletteId);
             if (rouletteInDb != null)
                 return null;
 
@@ -32,8 +32,8 @@ namespace BetServices.Application.RouletteServices
                 UpdateTime = DateTime.Now
             };
 
-            await _unitOfWork.RouletteRepository.Insert(rouletteToCreate);
-            await _unitOfWork.Commit();
+            await _rouletteRepository.Insert(rouletteToCreate);
+            //await _unitOfWork.Commit();
 
             return new CreateRouletteResponse
             {

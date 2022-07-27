@@ -7,22 +7,25 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [ApiController]
-    
     public class RoulettesController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly CreateRouletteService _createRouletteService;
+        private readonly RouletteOpeningService _rouletteOpeningService;
+        private readonly GetAllRoulettesService _getAllRoulettesService;
 
-        public RoulettesController(IUnitOfWork unitOfWork)
+        public RoulettesController(CreateRouletteService createRouletteService,
+            RouletteOpeningService rouletteOpeningService, GetAllRoulettesService getAllRoulettesService)
         {
-            _unitOfWork = unitOfWork;
+            _createRouletteService = createRouletteService;
+            _rouletteOpeningService = rouletteOpeningService;
+            _getAllRoulettesService = getAllRoulettesService;
         }
 
         [HttpPost]
         [Route("/roulettes")]
         public async Task<IActionResult> RegisterRoulette(CreateRouletteRequest request)
         {
-            var service = new CreateRouletteService(_unitOfWork);
-            var response = await service.Execute(request);
+            var response = await _createRouletteService.Execute(request);
             return Ok(response);
         }
 
@@ -30,8 +33,7 @@ namespace WebAPI.Controllers
         [Route("/roulettes/state")]
         public async Task<IActionResult> RouletteOpening(RouletteOpeningRequest request)
         {
-            var service = new RouletteOpeningService(_unitOfWork);
-            var response = await service.Execute(request);
+            var response = await _rouletteOpeningService.Execute(request);
             return Ok(response);
         }
 
@@ -39,8 +41,7 @@ namespace WebAPI.Controllers
         [Route("/roulettes")]
         public async Task<IActionResult> GetAllRoulettes()
         {
-            var service = new GetAllRoulettesService(_unitOfWork);
-            var response = await service.Execute();
+            var response = await _getAllRoulettesService.Execute();
             return Ok(response);
         }
     }

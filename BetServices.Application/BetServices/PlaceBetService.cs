@@ -12,36 +12,50 @@ namespace BetServices.Application.BetServices
 {
     public class PlaceBetService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly PayBetService _payBetService;
+        private readonly IBetRepository _betRepository;
+        private readonly IRouletteRepository _rouletteRepository;
+        private readonly IClientRepository _clientRepository;
 
-        public PlaceBetService(IUnitOfWork unitOfWork)
+        public PlaceBetService(PayBetService payBetService, IBetRepository betRepository, 
+            IRouletteRepository rouletteRepository, IClientRepository clientRepository)
         {
-            _unitOfWork = unitOfWork;
+            _payBetService = payBetService;
+            _betRepository = betRepository;
+            _rouletteRepository = rouletteRepository;
+            _clientRepository = clientRepository;
         }
 
         public async Task<PlaceBetResponse> Execute(PlaceBetRequest request)
         {
-            var openRoulette = (await _unitOfWork.RouletteRepository.FindBy(r => r.Id ==
-                request.RouletteId && r.State == RouletteState.Open)).FirstOrDefault();
-            if(openRoulette == null)
+            var openRoulette = await _rouletteRepository.FindOpenRoulette(request.RouletteId);
+            if (openRoulette == null)
                 return new PlaceBetResponse
                 {
                     Message = "Cannot place a bet in this roulette"
                 };
-            
-            var clientInDb = await _unitOfWork.ClientRepository.Find(request.ClientId);
+
+            var clientInDb = await _clientRepository.Find(request.ClientId);
             if (clientInDb == null)
                 return new PlaceBetResponse
                 {
                     Message = "This client doesn't exists"
                 };
             
+            if (request.Amount <= 0)
+            {
+                return new PlaceBetResponse
+                {
+                    Message = "This amount cannot be placed"
+                };
+            }
+
             if(clientInDb.Credit < request.Amount)
                 return new PlaceBetResponse
                 {
                     Message = "There is no enough credit to place this bet"
                 };
-            
+
             if(request.Amount > 10000)
                 return new PlaceBetResponse
                 {
@@ -61,9 +75,9 @@ namespace BetServices.Application.BetServices
                 UpdateTime = DateTime.Now
             };
 
-            await new PayBetService(_unitOfWork).Execute(betToPlace.ClientId, betToPlace.Amount);
-            await _unitOfWork.BetRepository.Insert(betToPlace);
-            await _unitOfWork.Commit();
+            await _payBetService.Execute(betToPlace.ClientId, betToPlace.Amount);
+            await _betRepository.Insert(betToPlace);
+            //await _unitOfWork.Commit();
             
             return new PlaceBetResponse
             {

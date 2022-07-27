@@ -43,7 +43,7 @@ namespace BetServices.Infrastructure.Base
             _dbSet.UpdateRange(entities);
         }
 
-        public void Update(T entity)
+        public async Task Update(T entity)
         {
             _dbSet.Update(entity);
         }

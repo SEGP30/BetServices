@@ -8,15 +8,10 @@ namespace BetServices.Infrastructure.Base
     public class UnitOfWork : IUnitOfWork
     {
         private readonly DbContext _dbContext;
+        /*private IRouletteRepository _rouletteRepository { get; set; }
         private IBetRepository _betRepository { get; set; }
-        private IRouletteRepository _rouletteRepository { get; set; }
         private IClientRepository _clientRepository { get; set; }
 
-        public IBetRepository BetRepository
-        {
-            get { return _betRepository ??= new BetRepository(_dbContext); }
-        }
-        
         public IRouletteRepository RouletteRepository
         {
             get { return _rouletteRepository ??= new RouletteRepository(_dbContext); }
@@ -26,6 +21,17 @@ namespace BetServices.Infrastructure.Base
         {
             get { return _clientRepository ??= new ClientRepository(_dbContext); }
         }
+
+        public IBetRepository BetRepository
+        {
+            get { return _betRepository ??= new BetRepository(_dbContext); }
+        } */
+
+        public IRouletteRepository RouletteRepository => throw new System.NotImplementedException();
+
+        public IBetRepository BetRepository => throw new System.NotImplementedException();
+
+        public IClientRepository ClientRepository => throw new System.NotImplementedException();
 
         public async Task Commit()
         {

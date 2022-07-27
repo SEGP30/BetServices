@@ -9,16 +9,16 @@ namespace BetServices.Application.RouletteServices
 {
     public class RouletteOpeningService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRouletteRepository _rouletteRepository;
 
-        public RouletteOpeningService(IUnitOfWork unitOfWork)
+        public RouletteOpeningService(IRouletteRepository rouletteRepository)
         {
-            _unitOfWork = unitOfWork;
+            _rouletteRepository = rouletteRepository;
         }
 
         public async Task<RouletteOpeningResponse> Execute(RouletteOpeningRequest request)
         {
-            var rouletteToOpen = await _unitOfWork.RouletteRepository.Find(request.RouletteId);
+            var rouletteToOpen = await _rouletteRepository.FindUnnoperativeRoulette(request.RouletteId);
             if (rouletteToOpen == null)
                 return new RouletteOpeningResponse
                 {
@@ -27,8 +27,8 @@ namespace BetServices.Application.RouletteServices
 
             rouletteToOpen.State = RouletteState.Open;
             
-            _unitOfWork.RouletteRepository.Update(rouletteToOpen);
-            await _unitOfWork.Commit();
+            await _rouletteRepository.Update(rouletteToOpen);
+            //await _unitOfWork.Commit();
 
             return new RouletteOpeningResponse
             {

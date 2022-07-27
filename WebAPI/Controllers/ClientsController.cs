@@ -10,19 +10,20 @@ namespace WebAPI.Controllers
 
     public class ClientsController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly RegisterClientService _registerClientService;
+        private readonly DepositCreditService _depositCreditService;
 
-        public ClientsController(IUnitOfWork unitOfWork)
+        public ClientsController(RegisterClientService registerClientService, DepositCreditService depositCreditService)
         {
-            _unitOfWork = unitOfWork;
+            _registerClientService = registerClientService;
+            _depositCreditService = depositCreditService;
         }
 
         [HttpPost]
         [Route("/clients")]
         public async Task<IActionResult> RegisterClient(RegisterClientRequest request)
         {
-            var service = new RegisterClientService(_unitOfWork);
-            var response = await service.Execute(request);
+            var response = await _registerClientService.Execute(request);
             return Ok(response);
         }
 
@@ -30,8 +31,7 @@ namespace WebAPI.Controllers
         [Route("/clients/credit")]
         public async Task<IActionResult> DepositCredit(DepositCreditRequest request)
         {
-            var service = new DepositCreditService(_unitOfWork);
-            var response = await service.Execute(request);
+            var response = await _depositCreditService.Execute(request);
             return Ok(response);
         }
     }

@@ -1,11 +1,16 @@
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using BetServices.Application.BetServices;
+using BetServices.Application.ClientServices;
+using BetServices.Application.RouletteServices;
 using BetServices.Domain.Contracts;
 using BetServices.Infrastructure;
 using BetServices.Infrastructure.Base;
+using BetServices.Infrastructure.Repositories;
+using BetServices.Infrastructure.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,6 +22,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using MySql.Data.MySqlClient;
 using StackExchange.Redis;
 
 namespace WebAPI
@@ -34,15 +40,37 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DbContext, BetServicesContext>
-            (opt => opt.UseMySQL($"Server = localhost; Port = 0330; Database = Bet_Services ; Username = root ; Password = mementomori1"),
+            (opt => opt.UseMySQL($"Server = localhost; Port = 0330; " +
+                                 $"Database = Bet_Services ; Username = root ; Password = mementomori1"),
                 ServiceLifetime.Transient
             );
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            var sqlConnection = new MySqlConnection($"Server = localhost; Port = 0330; " +
+                                                    $"Database = Bet_Services ; Username = root ; " +
+                                                    $"Password = mementomori1");
+            var unitOfWork = new SqlUnitOfWork(sqlConnection);
+            services.AddSingleton<DbConnection, MySqlConnection>(_ => sqlConnection);
+            services.AddSingleton<ISqlUnitOfWork, SqlUnitOfWork>(_ => unitOfWork);
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" }); });
+            
             services.AddSingleton<PlaceBetService>();
             services.AddSingleton<ClosingBetsService>();
             
+            services.AddSingleton<DepositCreditService>();
+            services.AddSingleton<ObtainRewardService>();
+            services.AddSingleton<PayBetService>();
+            services.AddSingleton<RegisterClientService>();
+
+            services.AddSingleton<CreateRouletteService>();
+            services.AddSingleton<GetAllRoulettesService>();
+            services.AddSingleton<RouletteClosingService>();
+            services.AddSingleton<RouletteOpeningService>();
+            
+            services.AddSingleton<IBetRepository, BetRepository>();
+            services.AddSingleton<IClientRepository, ClientRepository>();
+            services.AddSingleton<IRouletteRepository, RouletteRepository>();
+
             // var multiplexer = ConnectionMultiplexer.Connect("localhost:6379");
             // services.AddSingleton<IConnectionMultiplexer>(multiplexer);
 

@@ -6,16 +6,16 @@ namespace BetServices.Application.RouletteServices
 {
     public class GetAllRoulettesService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRouletteRepository _rouletteRepository;
 
-        public GetAllRoulettesService(IUnitOfWork unitOfWork)
+        public GetAllRoulettesService(IRouletteRepository rouletteRepository)
         {
-            _unitOfWork = unitOfWork;
+            _rouletteRepository = rouletteRepository;
         }
 
         public async Task<GetAllRoulettesResponse> Execute()
         {
-            var allRoulettes = await _unitOfWork.RouletteRepository.FindAll();
+            var allRoulettes = await _rouletteRepository.FindAll();
 
             return new GetAllRoulettesResponse
             {

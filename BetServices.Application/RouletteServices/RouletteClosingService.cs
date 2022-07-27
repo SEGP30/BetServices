@@ -8,17 +8,16 @@ namespace BetServices.Application.RouletteServices
 {
     public class RouletteClosingService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRouletteRepository _rouletteRepository;
 
-        public RouletteClosingService(IUnitOfWork unitOfWork)
+        public RouletteClosingService(IRouletteRepository rouletteRepository)
         {
-            _unitOfWork = unitOfWork;
+            _rouletteRepository = rouletteRepository;
         }
 
         public async Task<RouletteClosingResponse> Execute(long rouletteId)
         {
-            var rouletteToClose = (await _unitOfWork.RouletteRepository.FindBy(r => r.Id ==
-                rouletteId && r.State == RouletteState.Open)).FirstOrDefault();
+            var rouletteToClose = await _rouletteRepository.FindOpenRoulette(rouletteId);
             if(rouletteToClose == null)
                 return new RouletteClosingResponse
                 {
@@ -27,13 +26,13 @@ namespace BetServices.Application.RouletteServices
             
             rouletteToClose.State = RouletteState.Closed;
             
-            _unitOfWork.RouletteRepository.Update(rouletteToClose);
-            await _unitOfWork.Commit();
+            await _rouletteRepository.Update(rouletteToClose);
+            //await _unitOfWork.Commit();
             
             return new RouletteClosingResponse
             {
                 Response = true
-            };
+            }; 
         }
     }
 }

@@ -11,7 +11,7 @@ namespace BetServices.Domain.Contracts
         Task<T> Find(long id);
         Task<List<T>> FindBy(Expression<Func<T, bool>> predicate);
         void SaveRange(IEnumerable<T> entities);
-        void Update(T entity);
+        Task Update(T entity);
         void UpdateRange(IEnumerable<T> entities);
         Task Insert(T entity);
     }

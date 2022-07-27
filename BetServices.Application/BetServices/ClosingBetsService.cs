@@ -13,16 +13,18 @@ namespace BetServices.Application.BetServices
 {
     public class ClosingBetsService
     {
-        private readonly IUnitOfWork _unitOfWork;
         private readonly RouletteClosingService _rouletteClosingService;
         private readonly ObtainRewardService _obtainRewardService;
+        private readonly IBetRepository _betRepository;
 
 
-        public ClosingBetsService(IUnitOfWork unitOfWork, RouletteClosingService rouletteClosingService, ObtainRewardService obtainRewardService)
+        public ClosingBetsService(RouletteClosingService rouletteClosingService, 
+            ObtainRewardService obtainRewardService, IBetRepository betRepository)
         {
-            _unitOfWork = unitOfWork;
+   
             _rouletteClosingService = rouletteClosingService;
             _obtainRewardService = obtainRewardService;
+            _betRepository = betRepository;
         }
 
         public async Task<ClosingBetsResponse> Execute(long rouletteId)
@@ -35,16 +37,18 @@ namespace BetServices.Application.BetServices
                     Bets = new List<Bet>()
                 };
 
-            var betsToClose = await _unitOfWork.BetRepository.FindBy(b => b.RouletteId == rouletteId);
+            var betsToClose = await _betRepository.FindActiveBetsByRouletteId(rouletteId);
 
             foreach (var bet in betsToClose)
             {
                 bet.EntityState = EntityState.Inactive; 
                 bet.CalculateReward(winnerNumber);
+                bet.UpdateTime = DateTime.Now;
+                await _betRepository.Update(bet);
             }
             
-            _unitOfWork.BetRepository.UpdateRange(betsToClose);
-            await _unitOfWork.Commit();
+            //_betRepository.UpdateRange(betsToClose);
+            //await _unitOfWork.Commit();
             
             betsToClose.ForEach(async b =>  await _obtainRewardService.Execute(b));
 

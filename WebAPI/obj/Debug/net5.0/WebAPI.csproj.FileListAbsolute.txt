@@ -58,3 +58,4 @@ D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\WebAPI\bin\Debug\net5.0\
 D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\WebAPI\bin\Debug\net5.0\BetServices.Domain.pdb
 D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\WebAPI\bin\Debug\net5.0\BetServices.Application.dll
 D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\WebAPI\bin\Debug\net5.0\BetServices.Application.pdb
+D:\Nueva carpeta\Universidad\IGS\CleanCodeTest_Roulette\WebAPI\bin\Debug\net5.0\Dapper.dll

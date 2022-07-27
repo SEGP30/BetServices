@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using BetServices.Domain.Contracts;
 using BetServices.Domain.Entities;
 
@@ -6,20 +7,21 @@ namespace BetServices.Application.ClientServices
 {
     public class ObtainRewardService
     {
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IClientRepository _clientRepository;
 
-        public ObtainRewardService(IUnitOfWork unitOfWork)
+        public ObtainRewardService(IClientRepository clientRepository)
         {
-            _unitOfWork = unitOfWork;
+            _clientRepository = clientRepository;
         }
 
         public async Task Execute(Bet bet)
         {
-            var clientIDb = await _unitOfWork.ClientRepository.Find(bet.ClientId);
+            var clientInDb = await _clientRepository.Find(bet.ClientId);
 
-            clientIDb.Credit += bet.Reward;
-            _unitOfWork.ClientRepository.Update(clientIDb);
-            await _unitOfWork.Commit();
+            clientInDb.Credit += bet.Reward;
+            clientInDb.UpdateTime = DateTime.Now;
+            await _clientRepository.Update(clientInDb);
+            //await _unitOfWork.Commit();
         }
         
     }

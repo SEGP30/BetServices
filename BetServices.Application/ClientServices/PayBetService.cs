@@ -6,21 +6,22 @@ namespace BetServices.Application.ClientServices
 {
     public class PayBetService
     {
-        private readonly IUnitOfWork _unitOfWork;
 
-        public PayBetService(IUnitOfWork unitOfWork)
+        private readonly IClientRepository _clientRepository;
+
+        public PayBetService(IClientRepository clientRepository)
         {
-            _unitOfWork = unitOfWork;
+            _clientRepository = clientRepository;
         }
 
         public async Task Execute(long clientId, short amountToPay)
         {
-            var clientInDb = await _unitOfWork.ClientRepository.Find(clientId);
+            var clientInDb = await _clientRepository.Find(clientId);
 
             clientInDb.Credit -= amountToPay;
             clientInDb.UpdateTime = DateTime.Now;
-            _unitOfWork.ClientRepository.Update(clientInDb);
-            await _unitOfWork.Commit();
+            await _clientRepository.Update(clientInDb);
+            //await _unitOfWork.Commit();
             
         }
     }
