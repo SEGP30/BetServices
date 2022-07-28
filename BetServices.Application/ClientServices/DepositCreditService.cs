@@ -18,9 +18,9 @@ namespace BetServices.Application.ClientServices
 
         public async Task<DepositCreditResponse> Execute(DepositCreditRequest request)
         {
-            throw new ClientNotFoundException();
             var clientToDeposit = await _clientRepository.Find(request.ClientId);
-            // if (clientToDeposit == null)
+            if (clientToDeposit == null)
+                throw new ClientNotFoundException();
 
             if (request.NewCredit <= 0)
                 return new DepositCreditResponse
