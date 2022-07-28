@@ -1,39 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\WebAPI\\WebAPI.csproj": {}
   },
   "projects": {
-    "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj": {
+    "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj",
+        "projectUniqueName": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj",
         "projectName": "BetServices.Application",
-        "projectPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj",
-        "packagesPath": "C:\\Users\\SEGP\\.nuget\\packages\\",
-        "outputPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Application\\obj\\",
+        "projectPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj",
+        "packagesPath": "C:\\Users\\NILSO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\SEGP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\NILSO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj": {
-                "projectPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj"
+              "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj": {
+                "projectPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj"
               }
             }
           }
@@ -45,8 +42,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -62,37 +59,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj": {
+    "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj",
         "projectName": "BetServices.Domain",
-        "projectPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj",
-        "packagesPath": "C:\\Users\\SEGP\\.nuget\\packages\\",
-        "outputPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Domain\\obj\\",
+        "projectPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj",
+        "packagesPath": "C:\\Users\\NILSO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\SEGP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\NILSO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -103,12 +97,20 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Dapper": {
               "target": "Package",
               "version": "[2.0.123, )"
+            },
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
             }
           },
           "imports": [
@@ -126,40 +128,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj": {
+    "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj",
         "projectName": "BetServices.Infrastructure",
-        "projectPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\SEGP\\.nuget\\packages\\",
-        "outputPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\NILSO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\SEGP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\NILSO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj": {
-                "projectPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj"
+              "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj": {
+                "projectPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Domain\\BetServices.Domain.csproj"
               }
             }
           }
@@ -171,8 +170,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -216,43 +215,40 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\WebAPI\\WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\WebAPI\\WebAPI.csproj",
         "projectName": "WebAPI",
-        "projectPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\WebAPI\\WebAPI.csproj",
-        "packagesPath": "C:\\Users\\SEGP\\.nuget\\packages\\",
-        "outputPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\WebAPI\\obj\\",
+        "projectPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\WebAPI\\WebAPI.csproj",
+        "packagesPath": "C:\\Users\\NILSO\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\SEGP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\NILSO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "netcoreapp3.1"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj": {
-                "projectPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj"
+              "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj": {
+                "projectPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Application\\BetServices.Application.csproj"
               },
-              "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj": {
-                "projectPath": "D:\\Nueva carpeta\\Universidad\\IGS\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj"
+              "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\NILSO\\Downloads\\CleanCodeTest_Roulette\\BetServices.Infrastructure\\BetServices.Infrastructure.csproj"
               }
             }
           }
@@ -264,8 +260,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
@@ -302,6 +298,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.25, 3.1.25]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -310,7 +312,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

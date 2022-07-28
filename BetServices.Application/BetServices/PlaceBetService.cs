@@ -70,8 +70,8 @@ namespace BetServices.Application.BetServices
                 Type = request.BetType,
                 CreationDate = DateTime.Today,
                 EntityState = EntityState.Active,
-                SelectedColor = request.BetType != BetType.Color ? null : request.SelectedColor,
-                SelectedNumber = request.BetType != BetType.Numerical ? null : request.SelectedNumber,
+                SelectedColor = request.BetType != BetType.Color ? (SelectedColor?) null : request.SelectedColor,
+                SelectedNumber = request.BetType != BetType.Numerical ? (short) 0 : request.SelectedNumber,
                 UpdateTime = DateTime.Now
             };
 

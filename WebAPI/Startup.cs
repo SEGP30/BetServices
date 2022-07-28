@@ -7,6 +7,7 @@ using BetServices.Application.BetServices;
 using BetServices.Application.ClientServices;
 using BetServices.Application.RouletteServices;
 using BetServices.Domain.Contracts;
+using BetServices.Domain.Utils;
 using BetServices.Infrastructure;
 using BetServices.Infrastructure.Base;
 using BetServices.Infrastructure.Repositories;
@@ -24,6 +25,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MySql.Data.MySqlClient;
 using StackExchange.Redis;
+using WebAPI.Extensions;
 
 namespace WebAPI
 {
@@ -40,14 +42,11 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DbContext, BetServicesContext>
-            (opt => opt.UseMySQL($"Server = localhost; Port = 0330; " +
-                                 $"Database = Bet_Services ; Username = root ; Password = mementomori1"),
+            (opt => opt.UseMySQL(EnvironmentManager.DbConnection),
                 ServiceLifetime.Transient
             );
 
-            var sqlConnection = new MySqlConnection($"Server = localhost; Port = 0330; " +
-                                                    $"Database = Bet_Services ; Username = root ; " +
-                                                    $"Password = mementomori1");
+            var sqlConnection = new MySqlConnection(EnvironmentManager.DbConnection);
             var unitOfWork = new SqlUnitOfWork(sqlConnection);
             services.AddSingleton<DbConnection, MySqlConnection>(_ => sqlConnection);
             services.AddSingleton<ISqlUnitOfWork, SqlUnitOfWork>(_ => unitOfWork);
@@ -95,6 +94,8 @@ namespace WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.ConfigureExceptionHandler();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
