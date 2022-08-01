@@ -7,6 +7,7 @@ using BetServices.Application.ClientServices;
 using BetServices.Domain.Contracts;
 using BetServices.Domain.Entities;
 using BetServices.Domain.Enums;
+using BetServices.Domain.Exceptions;
 
 namespace BetServices.Application.BetServices
 {
@@ -30,37 +31,23 @@ namespace BetServices.Application.BetServices
         {
             var openRoulette = await _rouletteRepository.FindOpenRoulette(request.RouletteId);
             if (openRoulette == null)
-                return new PlaceBetResponse
-                {
-                    Message = "Cannot place a bet in this roulette"
-                };
+                throw new UnnoperativeRouletteException();
 
             var clientInDb = await _clientRepository.Find(request.ClientId);
             if (clientInDb == null)
-                return new PlaceBetResponse
-                {
-                    Message = "This client doesn't exists"
-                };
-            
+                throw new ClientNotFoundException();
+
             if (request.Amount <= 0)
-            {
-                return new PlaceBetResponse
-                {
-                    Message = "This amount cannot be placed"
-                };
-            }
+                throw new NegativeOrZeroAmountException();
 
-            if(clientInDb.Credit < request.Amount)
-                return new PlaceBetResponse
-                {
-                    Message = "There is no enough credit to place this bet"
-                };
+            if (clientInDb.Credit < request.Amount)
+                throw new NotEnoughCreditException();
 
-            if(request.Amount > 10000)
-                return new PlaceBetResponse
-                {
-                    Message = "Bet's amount to place has been surpassed"
-                };
+            if (request.Amount > 10000)
+                throw new AmountSurpassedException();
+
+            if (request.SelectedNumber > 36)
+                throw new RangeOfNumbersSurpassedException();
 
             var betToPlace = new Bet
             {

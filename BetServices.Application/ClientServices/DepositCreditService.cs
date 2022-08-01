@@ -23,10 +23,7 @@ namespace BetServices.Application.ClientServices
                 throw new ClientNotFoundException();
 
             if (request.NewCredit <= 0)
-                return new DepositCreditResponse
-                {
-                    Message = "Cannot deposit negative or 0 credit"
-                };
+                throw new NegativeOrZeroCreditException();
 
             clientToDeposit.Credit += request.NewCredit;
             clientToDeposit.UpdateTime = DateTime.Now;
