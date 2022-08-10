@@ -4,6 +4,7 @@ using BetServices.Application.RouletteServices.Requests;
 using BetServices.Application.RouletteServices.Responses;
 using BetServices.Domain.Contracts;
 using BetServices.Domain.Enums;
+using BetServices.Domain.Exceptions;
 
 namespace BetServices.Application.RouletteServices
 {
@@ -20,10 +21,7 @@ namespace BetServices.Application.RouletteServices
         {
             var rouletteToOpen = await _rouletteRepository.FindUnnoperativeRoulette(request.RouletteId);
             if (rouletteToOpen == null)
-                return new RouletteOpeningResponse
-                {
-                    Message = "Operation denied"
-                };
+                throw new RouletteNotFoundException();
 
             rouletteToOpen.State = RouletteState.Open;
             

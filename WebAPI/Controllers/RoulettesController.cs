@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("/roulettes")]
+        [Route("roulettes")]
         public async Task<IActionResult> RegisterRoulette(CreateRouletteRequest request)
         {
             var response = await _createRouletteService.Execute(request);
@@ -30,7 +30,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("/roulettes/state")]
+        [Route("roulettes/state")]
         public async Task<IActionResult> RouletteOpening(RouletteOpeningRequest request)
         {
             var response = await _rouletteOpeningService.Execute(request);
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/roulettes")]
+        [Route("roulettes")]
         public async Task<IActionResult> GetAllRoulettes()
         {
             var response = await _getAllRoulettesService.Execute();

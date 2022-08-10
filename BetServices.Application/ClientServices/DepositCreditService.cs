@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using BetServices.Application.ClientServices.Requests;
 using BetServices.Application.ClientServices.Responses;
 using BetServices.Domain.Contracts;
+using BetServices.Domain.Exceptions;
 
 namespace BetServices.Application.ClientServices
 {
@@ -19,16 +20,10 @@ namespace BetServices.Application.ClientServices
         {
             var clientToDeposit = await _clientRepository.Find(request.ClientId);
             if (clientToDeposit == null)
-                return new DepositCreditResponse
-                {
-                    Message = "No Client found with this Id"
-                };
-            
+                throw new ClientNotFoundException();
+
             if (request.NewCredit <= 0)
-                return new DepositCreditResponse
-                {
-                    Message = "Cannot deposit negative or 0 credit"
-                };
+                throw new NegativeOrZeroCreditException();
 
             clientToDeposit.Credit += request.NewCredit;
             clientToDeposit.UpdateTime = DateTime.Now;

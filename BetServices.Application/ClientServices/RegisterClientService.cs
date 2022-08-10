@@ -5,6 +5,7 @@ using BetServices.Application.ClientServices.Responses;
 using BetServices.Domain.Contracts;
 using BetServices.Domain.Entities;
 using BetServices.Domain.Enums;
+using BetServices.Domain.Exceptions;
 
 namespace BetServices.Application.ClientServices
 {
@@ -21,10 +22,7 @@ namespace BetServices.Application.ClientServices
         {
             var clientInDb = await _clientRepository.Find(request.ClientId);
             if (clientInDb != null)
-                return new RegisterClientResponse
-                {
-                    Message = "Client already exits"
-                };
+                throw new ClientAlreadyExistsException();
 
             var clientToRegister = new Client
             {

@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("/clients")]
+        [Route("clients")]
         public async Task<IActionResult> RegisterClient(RegisterClientRequest request)
         {
             var response = await _registerClientService.Execute(request);
@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("/clients/credit")]
+        [Route("clients/credit")]
         public async Task<IActionResult> DepositCredit(DepositCreditRequest request)
         {
             var response = await _depositCreditService.Execute(request);

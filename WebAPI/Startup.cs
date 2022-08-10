@@ -7,6 +7,7 @@ using BetServices.Application.BetServices;
 using BetServices.Application.ClientServices;
 using BetServices.Application.RouletteServices;
 using BetServices.Domain.Contracts;
+using BetServices.Domain.Utils;
 using BetServices.Infrastructure;
 using BetServices.Infrastructure.Base;
 using BetServices.Infrastructure.Repositories;
@@ -15,6 +16,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +26,8 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using MySql.Data.MySqlClient;
 using StackExchange.Redis;
+using WebAPI.Extensions;
+
 
 namespace WebAPI
 {
@@ -40,19 +44,24 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DbContext, BetServicesContext>
-            (opt => opt.UseMySQL($"Server = localhost; Port = 0330; " +
-                                 $"Database = Bet_Services ; Username = root ; Password = mementomori1"),
+            (opt => opt.UseMySQL(EnvironmentManager.DbConnection),
                 ServiceLifetime.Transient
             );
 
-            var sqlConnection = new MySqlConnection($"Server = localhost; Port = 0330; " +
-                                                    $"Database = Bet_Services ; Username = root ; " +
-                                                    $"Password = mementomori1");
+            var sqlConnection = new MySqlConnection(EnvironmentManager.DbConnection);
             var unitOfWork = new SqlUnitOfWork(sqlConnection);
             services.AddSingleton<DbConnection, MySqlConnection>(_ => sqlConnection);
             services.AddSingleton<ISqlUnitOfWork, SqlUnitOfWork>(_ => unitOfWork);
             services.AddControllers();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebAPI", Version = "v1" }); });
+            services.AddSwaggerGen(options =>
+            {
+                var provider = services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
+                foreach (var description in provider.ApiVersionDescriptions)
+                {
+                    options.SwaggerDoc($"v{description.ApiVersion}",
+                        new OpenApiInfo {Title = "Bet Services", Version = $"v{description.ApiVersion}"});
+                }
+            });
             
             services.AddSingleton<PlaceBetService>();
             services.AddSingleton<ClosingBetsService>();
@@ -70,6 +79,8 @@ namespace WebAPI
             services.AddSingleton<IBetRepository, BetRepository>();
             services.AddSingleton<IClientRepository, ClientRepository>();
             services.AddSingleton<IRouletteRepository, RouletteRepository>();
+            
+            services.ConfigureAPIUtils();
 
             // var multiplexer = ConnectionMultiplexer.Connect("localhost:6379");
             // services.AddSingleton<IConnectionMultiplexer>(multiplexer);
@@ -81,13 +92,22 @@ namespace WebAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
+                app.UseSwaggerUI(swaggerUiOptions =>
+                {
+                    //Build a swagger endpoint for each discovered API version
+                    foreach (var description in provider.ApiVersionDescriptions)
+                    {
+                        swaggerUiOptions.SwaggerEndpoint(
+                            $"/swagger/{description.GroupName}/swagger.json", 
+                            description.GroupName.ToUpperInvariant());
+                    }
+                });
             }
 
             app.UseHttpsRedirection();
@@ -95,6 +115,8 @@ namespace WebAPI
             app.UseRouting();
 
             app.UseAuthorization();
+            
+            app.ConfigureExceptionHandler();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

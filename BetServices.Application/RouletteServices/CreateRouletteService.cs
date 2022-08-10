@@ -5,6 +5,7 @@ using BetServices.Application.RouletteServices.Responses;
 using BetServices.Domain.Contracts;
 using BetServices.Domain.Entities;
 using BetServices.Domain.Enums;
+using BetServices.Domain.Exceptions;
 
 namespace BetServices.Application.RouletteServices
 {
@@ -21,7 +22,7 @@ namespace BetServices.Application.RouletteServices
         {
             var rouletteInDb = await _rouletteRepository.Find(request.RouletteId);
             if (rouletteInDb != null)
-                return null;
+                throw new RouletteAlreadyExistsException();
 
             var rouletteToCreate = new Roulette
             {
