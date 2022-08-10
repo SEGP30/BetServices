@@ -20,8 +20,8 @@ namespace WebAPI.Controllers
             _closingBetsService = closingBetsService;
         }
 
-        //[ApiVersion("1")]
-        //[ApiVersion("2")]
+        [ApiVersion("1")]
+        [ApiVersion("2")]
         [HttpPost]
         public async Task<IActionResult> PlaceBet(PlaceBetRequest request)
         {
@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
             return Ok(response);
         }
 
-        //[ApiVersion("2")]
+        [ApiVersion("2")]
         [HttpGet]
         [Route("close")]
         public async Task<IActionResult> ClosingBets(long rouletteId)
