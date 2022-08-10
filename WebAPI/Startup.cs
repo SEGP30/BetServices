@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -69,6 +70,8 @@ namespace WebAPI
             services.AddSingleton<IBetRepository, BetRepository>();
             services.AddSingleton<IClientRepository, ClientRepository>();
             services.AddSingleton<IRouletteRepository, RouletteRepository>();
+            
+            //services.ConfigureAPIUtils();
 
             // var multiplexer = ConnectionMultiplexer.Connect("localhost:6379");
             // services.AddSingleton<IConnectionMultiplexer>(multiplexer);

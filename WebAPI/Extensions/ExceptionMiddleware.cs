@@ -22,7 +22,7 @@ namespace WebAPI.Extensions
                     switch (exception)
                     {
                         case BetServicesException transportManagerException:
-                            transportManagerException.SetHttpResponse(context);
+                            await transportManagerException.SetHttpResponse(context);
                             break;
                         default:
                             context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
