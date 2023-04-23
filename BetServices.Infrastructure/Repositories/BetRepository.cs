@@ -26,7 +26,7 @@ namespace BetServices.Infrastructure.Repositories
         public async Task<Bet> Find(long id)
         {
             var parameters = new { Id = id};
-            const string query = "SELECT * FROM Bet_Services.Bets WHERE Id = @Id";
+            const string query = "SELECT * FROM BeBets WHERE Id = @Id";
             return await _sqlUnitOfWork.ExecuteQuerySingle<Bet>(query, parameters);
         }
 
@@ -38,7 +38,7 @@ namespace BetServices.Infrastructure.Repositories
         public async Task<List<Bet>> FindActiveBetsByRouletteId(long rouletteId)
         {
             var parameters = new { RouletteId = rouletteId};
-            const string query = "SELECT * FROM Bet_Services.Bets WHERE RouletteId = @RouletteId AND EntityState = 1";
+            const string query = "SELECT * FROM Bets WHERE RouletteId = @RouletteId AND EntityState = 1";
             return await _sqlUnitOfWork.ExecuteQuery<Bet>(query, parameters);
         }
 
@@ -50,7 +50,7 @@ namespace BetServices.Infrastructure.Repositories
         public async Task Update(Bet entity)
         {
             var parameters = new DynamicParameters(entity);
-            const string query = "UPDATE Bet_Services.Bets SET Amount = @Amount, Type = @Type, Reward = @Reward, " +
+            const string query = "UPDATE Bets SET Amount = @Amount, Type = @Type, Reward = @Reward, " +
                                  "CreationDate = @CreationDate, EntityState = @EntityState, " +
                                  "SelectedColor = @SelectedColor, SelectedNumber = @SelectedNumber, " +
                                  "UpdateTime = @UpdateTime " +
@@ -66,7 +66,7 @@ namespace BetServices.Infrastructure.Repositories
         public async Task Insert(Bet entity)
         {
             var parameters = new DynamicParameters(entity);
-            const string query = "INSERT INTO bet_services.bets (RouletteId, ClientId, Amount, Type, " +
+            const string query = "INSERT INTO Bets (RouletteId, ClientId, Amount, Type, " +
                                  "Reward, CreationDate, EntityState, SelectedColor, SelectedNumber, UpdateTime) " +
                                  "VALUES (@RouletteId, @ClientId, @Amount, @Type, " +
                                  "0, @CreationDate, @EntityState, @SelectedColor, @SelectedNumber, @UpdateTime)";

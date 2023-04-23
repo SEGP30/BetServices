@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [ApiController]
-
+    [ApiVersion("1")]
     public class ClientsController : ControllerBase
     {
         private readonly RegisterClientService _registerClientService;

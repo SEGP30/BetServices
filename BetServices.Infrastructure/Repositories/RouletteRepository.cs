@@ -22,14 +22,14 @@ namespace BetServices.Infrastructure.Repositories
 
         public async Task<IEnumerable<Roulette>> FindAll()
         {
-            const string query = "SELECT * FROM Bet_Services.Roulettes";
+            const string query = "SELECT * FROM Roulettes";
             return await _sqlUnitOfWork.ExecuteQuery<Roulette>(query);
         }
 
         public async Task<Roulette> Find(long id)
         {
             var parameters = new { Id = id};
-            const string query = "SELECT * FROM Bet_Services.Roulettes WHERE Id = @Id";
+            const string query = "SELECT * FROM Roulettes WHERE Id = @Id";
             return await _sqlUnitOfWork.ExecuteQuerySingle<Roulette>(query, parameters);
         }
 
@@ -42,14 +42,14 @@ namespace BetServices.Infrastructure.Repositories
         public async Task<Roulette> FindOpenRoulette(long id)
         {
             var parameters = new { Id = id};
-            const string query = "SELECT * FROM Bet_Services.Roulettes WHERE Id = @Id AND State = 1";
+            const string query = "SELECT * FROM Roulettes WHERE Id = @Id AND State = 1";
             return await _sqlUnitOfWork.ExecuteQuerySingle<Roulette>(query, parameters);
         }
         
         public async Task<Roulette> FindUnnoperativeRoulette(long id)
         {
             var parameters = new { Id = id};
-            const string query = "SELECT * FROM Bet_Services.Roulettes WHERE Id = @Id AND State != 1";
+            const string query = "SELECT * FROM Roulettes WHERE Id = @Id AND State != 1";
             return await _sqlUnitOfWork.ExecuteQuerySingle<Roulette>(query, parameters);
         }
         
@@ -61,7 +61,7 @@ namespace BetServices.Infrastructure.Repositories
         public async Task Update(Roulette entity)
         {
             var parameters = new DynamicParameters(entity);
-            const string query = "UPDATE Bet_Services.Roulettes SET State = @State, EntityState = @EntityState, " +
+            const string query = "UPDATE Roulettes SET State = @State, EntityState = @EntityState, " +
                                  "CreationDate = @CreationDate, UpdateTime = @UpdateTime WHERE Id = @Id";
             await _sqlUnitOfWork.ExecuteCommandAsync(query, parameters);
         }
@@ -74,7 +74,7 @@ namespace BetServices.Infrastructure.Repositories
         public async Task Insert(Roulette entity)
         {
             var parameters = new DynamicParameters(entity);
-            const string query = "INSERT INTO Bet_Services.Roulettes (Id, State, EntityState, CreationDate, UpdateTime) " +
+            const string query = "INSERT INTO Roulettes (Id, State, EntityState, CreationDate, UpdateTime) " +
                                  "VALUES (@Id, @State, @EntityState, @CreationDate, @UpdateTime)";
             await _sqlUnitOfWork.ExecuteCommandAsync(query, parameters);
         }

@@ -27,7 +27,7 @@ namespace BetServices.Infrastructure.Repositories
         public async Task<Client> Find(long id)
         {
             var parameters = new { Id = id};
-            const string query = "SELECT * FROM Bet_Services.Clients WHERE Id = @Id";
+            const string query = "SELECT * FROM Clients WHERE Id = @Id";
             return await _sqlUnitOfWork.ExecuteQuerySingle<Client>(query, parameters);
         }
 
@@ -44,7 +44,7 @@ namespace BetServices.Infrastructure.Repositories
         public async Task Update(Client entity)
         {
             var parameters = new DynamicParameters(entity);
-            const string query = "UPDATE Bet_Services.Clients SET Names = @Names, Surnames = @Surnames, Gender = @Gender, " +
+            const string query = "UPDATE Clients SET Names = @Names, Surnames = @Surnames, Gender = @Gender, " +
                                  "EntityState = @EntityState, Credit = @Credit, CreationDate = @CreationDate, " +
                                  "UpdateTime = @UpdateTime WHERE Id = @Id";
             await _sqlUnitOfWork.ExecuteCommandAsync(query, parameters);
@@ -58,7 +58,7 @@ namespace BetServices.Infrastructure.Repositories
         public async Task Insert(Client entity)
         {
             var parameters = new DynamicParameters(entity);
-            const string query = "INSERT INTO Bet_Services.Clients (Id, Names, Surnames, Gender, " +
+            const string query = "INSERT INTO Clients (Id, Names, Surnames, Gender, " +
                                  "EntityState, Credit, CreationDate, UpdateTime) " +
                                  "VALUES (@Id, @Names, @Surnames, @Gender, " +
                                  "@EntityState, @Credit, @CreationDate, @UpdateTime)";

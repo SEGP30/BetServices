@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using BetServices.Application.BetServices.Requests;
 using BetServices.Application.BetServices.Responses;
 using BetServices.Application.ClientServices;
 using BetServices.Application.RouletteServices;

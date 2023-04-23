@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using BetServices.Application.BetServices;
 using BetServices.Application.BetServices.Requests;
-using BetServices.Domain.Contracts;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
